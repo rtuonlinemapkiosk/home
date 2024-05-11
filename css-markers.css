@@ -1,0 +1,254 @@
+#map {
+    position: relative;
+}
+
+
+
+
+#itcLandmarkIcon {
+    position: absolute;
+    left: 44%;
+    top: 30%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#snagahLandmarkIcon {
+    position: absolute;
+    left: 91%;
+    top: 11.2%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#oldLandmarkIcon {
+    position: absolute;
+    left: 60.5%;
+    top: 55%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#universityquadrangleLandmarkIcon {
+    position: absolute;
+    left: 62.59%;
+    top: 40%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#universitygymnasiumLandmarkIcon {
+    position: absolute;
+    left: 44%;
+    top: 72%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#gate-4LandmarkIcon {
+    position: absolute;
+    left: 34%;
+    top: 61%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#gate-3LandmarkIcon {
+    position: absolute;
+    left: 51%;
+    top: 90%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#gate-2LandmarkIcon {
+    position: absolute;
+    left: 64%;
+    top: 90%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#wellnessLandmarkIcon {
+    position: absolute;
+    left: 64%;
+    top: 79%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#mabLandmarkIcon {
+    position: absolute;
+    left: 68%;
+    top: 64.5%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#gate-1LandmarkIcon {
+    position: absolute;
+    left: 81%;
+    top: 90%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#engineeringlaboratoryLandmarkIcon {
+    position: absolute;
+    left: 46%;
+    top: 2%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#dormitoryLandmarkIcon {
+    position: absolute;
+    left: 56%;
+    top: 3%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#itbLandmarkIcon {
+    position: absolute;
+    left: 57.5%;
+    top: 20%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#medical\26 dentalclinicLandmarkIcon {
+    position: absolute;
+    left: 66.95%;
+    top: 12.5%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#old\28 southwing\29 LandmarkIcon {
+    position: absolute;
+    left: 72%;
+    top: 13%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#r\26 dLandmarkIcon {
+    position: absolute;
+    left: 86%;
+    top: 14%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+#gate-5LandmarkIcon {
+    position: absolute;
+    left: 96%;
+    top: 21.5%;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+}
+
+
+/* Define a keyframe animation for popping up and bouncing with a longer duration */
+@keyframes popUpBounceLandmarks {
+    0% { transform: scale(0.5); opacity: 0; }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+
+/* Apply the animation to the landmarks */
+#itcLandmarkIcon,
+#snagahLandmarkIcon,
+#oldLandmarkIcon,
+#universityquadrangleLandmarkIcon,
+#universitygymnasiumLandmarkIcon,
+#gateway-4LandmarkIcon,
+#gateway-3LandmarkIcon,
+#gateway-2LandmarkIcon,
+#wellnessLandmarkIcon,
+#mabLandmarkIcon,
+#gateway-1LandmarkIcon,
+#engineeringlaboratoryLandmarkIcon,
+#dormitoryLandmarkIcon,
+#itbLandmarkIcon,
+#medical\26 dentalclinicLandmarkIcon,
+#old\28 southwing\29 LandmarkIcon,
+#r\26 dLandmarkIcon,
+#gateway-5LandmarkIcon {
+    opacity: 0; /* Initially hidden */
+    animation: popUpBounceLandmarks 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; /* Longer duration */
+}
+
+
+

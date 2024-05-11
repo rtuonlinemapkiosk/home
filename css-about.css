@@ -1,0 +1,53 @@
+/* Styling for the About button */
+#openAboutTab {
+    position: absolute; /* Position the button */
+    top: 15px; /* Adjust top position */
+    left: 25px; /* Adjust right position */
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 10px 20px; /* Adjust padding */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 10000; /* Ensure the button overlays other content */
+    transition: background-color 0.3s ease; /* Smooth transition for background color change */
+}
+
+#openAboutTab:hover {
+    background-color: #0056b3; /* Button background color on hover */
+}
+
+/* Styling for the About tab */
+.side-tab {
+    position: fixed; /* Position the tab */
+    top: 0;
+    right: -100%; /* Initially hidden and out of sight */
+    width: 300px;
+    height: 100%;
+    background-color: #fff; /* Tab background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    transition: right 0.3s ease; /* Smooth transition when opening/closing */
+    z-index: 10001; /* Set a higher z-index value to ensure it overlays other elements */
+}
+
+.side-tab.open {
+    right: 0; /* Show the tab when open */
+}
+
+#closeAboutTab {
+    position: absolute; /* Position the close button */
+    top: 10px; /* Adjust the top position */
+    right: 10px; /* Adjust the right position */
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 10px 20px; /* Adjust padding */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for background color change */
+}
+
+#closeAboutTab:hover {
+    background-color: #0056b3; /* Button background color on hover */
+}

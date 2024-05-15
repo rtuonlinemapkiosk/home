@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTU Map Kiosk</title>
+    <!--   ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺  ───────── ౨ CSS AREA ৎ ───────── ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦   */ -->
+    <link rel="stylesheet" href="css-searchtab.css">
+    <link rel="stylesheet" href="css-buildings.css">
+    <link rel="stylesheet" href="css-markers.css">
+    <link rel="stylesheet" href="css-about.css">
+   
+</head>
+<script>
+    function showBuildingDetails(buildingName) {
+    // Set the building name in the building details tab
+    document.getElementById('buildingName').innerText = buildingName;
+    // Hide the search overlay
+    document.getElementById('searchOverlay').style.display = 'none';
+    // Show the floors and rooms panel
+    document.getElementById('floorsRoomsPanel').style.display = 'block';
+    // Set the value of the "From" input field to the clicked building name
+    document.getElementById('search').value = buildingName;
+}
+</script>
+<body>    
+ 
+  <img src="images/rtuu.png" class="img-fluid" alt="...">
+  
+
+
+    <div id="map"></div>
+    <!-- ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺  ───────── ౨ LANDMARK AREA ৎ ───────── ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦  -->
+     <img id="itcLandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="ITC Landmark Icon" style="display: none;">
+<img id="snagahLandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="Snagah Landmark Icon" style="display: none;">
+<img id="oldLandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="Old building Landmark Icon" style="display: none;">
+<img id="universityquadrangleLandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="University Quadrangle Landmark Icon" style="display: none;">
+<img id="universitygymnasiumLandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="University Gymnasium Landmark Icon" style="display: none;">
+<img id="gate-4LandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="Gate-4 Landmark Icon" style="display: none;">
+<img id="gate-3LandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="Gate-3 Landmark Icon" style="display: none;">
+<img id="gate-2LandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="Gate-2 Landmark Icon" style="display: none;">
+<img id="wellnessLandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="Wellness Landmark Icon" style="display: none;">
+<img id="mabLandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="MAB Building Landmark Icon" style="display: none;">
+<img id="gate-1LandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="Gate-1 Landmark Icon" style="display: none;">
+<img id="engineeringlaboratoryLandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="Engineering Laboratory Landmark Icon" style="display: none;">
+<img id="dormitoryLandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="Dormitory Landmark Icon" style="display: none;">
+<img id="itbLandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="ITB Landmark Icon" style="display: none;">
+<img id="medical&dentalclinicLandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="Medical & Dental Clinic Landmark Icon" style="display: none;">
+<img id="old(southwing)LandmarkIcon"  src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="Old(South Wing) Landmark Icon" style="display: none;">
+<img id="r&dLandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="R & D Landmark Icon" style="display: none;">
+<img id="gate-5LandmarkIcon" src="https://cdn-icons-png.flaticon.com/512/1823/1823592.png" alt="Gate-5 Landmark Icon" style="display: none;">
+
+
+    </div>
+    <div class="map-overlay" id="searchOverlay">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <div id="suggestions"></div>
+        <ul class="categories" id="categories">
+            <li class="category" onclick="showBuildingDetails('Engineering Laboratory Building')">
+                Engineering Laboratory Building
+                <ul class="floors" style="display: none;">
+                    <li class="category" onclick="showBuildingDetails('Dormitory Building')">
+                        Dormitory Building
+                        <ul class="floors" style="display: none;">
+                            <!-- Floor buttons for Dormitory Building -->
+                            <li><button class="floor" onclick="showRooms('Dormitory Building', 'Ground')">Ground Floor</button></li>
+                            <li><div id="DormitoryBuildingGroundRooms" class="rooms-container"></div></li>
+                            <li><button class="floor" onclick="showRooms('Dormitory Building', '2nd')">2nd Floor</button></li>
+                            <li><div id="DormitoryBuildingSecondRooms" class="rooms-container"></div></li>
+                            <li><button class="floor" onclick="showRooms('Dormitory Building', '3rd')">3rd Floor</button></li>
+                            <li><div id="DormitoryBuildingThirdRooms" class="rooms-container"></div></li>
+                            <li><button class="floor" onclick="showRooms('Dormitory Building', '4th')">4th Floor</button></li>
+                            <li><div id="DormitoryBuildingfourthRooms" class="rooms-container"></div></li>
+                        </ul>
+                    </li>
+                    <!-- Floor buttons for Engineering Laboratory Building -->
+                    <li><button class="floor" onclick="showRooms('Engineering Laboratory Building', 'Ground')">Ground Floor</button></li>
+                    <li><div id="ELBBuildingGroundRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Engineering Laboratory Building', '2nd')">2nd Floor</button></li>
+                    <li><div id="ELBBuildingSecondRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Engineering Laboratory Building', '3rd')">3rd Floor</button></li>
+                    <li><div id="ELBBuildingThirdRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Engineering Laboratory Building', '4th')">4th Floor</button></li>
+                    <li><div id="ELBBuildingfourthRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Engineering Laboratory Building', '5th')">5th Floor</button></li>
+                    <li><div id="ELBBuildingfifthRooms" class="rooms-container"></div></li>
+                </ul>
+            </li>
+     
+            <li class="category" onclick="showBuildingDetails('Gate-1')">Gate-1
+            <ul class="floors" style="display: none;"></ul>
+            <li><div id="Gate-1GroundRooms" class="rooms-container"></div></li>
+            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <li class="category" onclick="showBuildingDetails('Gate-2')">Gate-2
+                    <ul class="floors" style="display: none;"></ul>
+                    <li><div id="Gate-2GroundRooms" class="rooms-container"></div></li>
+                    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <li
+                    class="category" onclick="showBuildingDetails('Gate-3')">Gate-3
+                    <ul class="floors" style="display: none;"></ul>
+                    <li><div id="Gate-3GroundRooms" class="rooms-container"></div></li>
+                    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <li
+                    class="category" onclick="showBuildingDetails('Gate-4')">Gate-4
+                    <ul class="floors" style="display: none;"></ul>
+                    <li><div id="Gate-4GroundRooms" class="rooms-container"></div></li>
+                    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <li
+                    class="category" onclick="showBuildingDetails('Gate-5')">Gate-5
+                    <ul class="floors" style="display: none;"></ul>
+                    <li><div id="Gate-5GroundRooms" class="rooms-container"></div></li>
+                    </li>
+            <li class="category" onclick="showBuildingDetails('ITB Building')">
+                        ITB Building
+                         <ul class="floors" style="display: none;">
+                             <!-- Floor buttons for ITB Building -->
+                             <li><button class="floor" onclick="showRooms('ITB Building', 'Ground')">Ground Floor</button></li>
+                             <li><div id="ITBBuildingGroundRooms" class="rooms-container"></div></li>
+                             <li><button class="floor" onclick="showRooms('ITB Building', '2nd')">2nd Floor</button></li>
+                             <li><div id="ITBBuildingSecondRooms" class="rooms-container"></div></li>
+                             <li><button class="floor" onclick="showRooms('ITB Building', '3rd')">3rd Floor</button></li>
+                             <li><div id="ITBBuildingthirdRooms" class="rooms-container"></div></li>
+                             <li><button class="floor" onclick="showRooms('ITB Building', '4th')">4th Floor</button></li>
+                             <li><div id="ITBBuildingfourthRooms" class="rooms-container"></div></li>
+                             <li><button class="floor" onclick="showRooms('ITB Building', '5th')">5th Floor</button></li>
+                             <li><div id="ITBBuildingfifthRooms" class="rooms-container"></div></li>
+                         </ul>
+                     </li>
+            <li class="category" onclick="showBuildingDetails('ITC Building')">
+                ITC Building
+                <ul class="floors" style="display: none;">
+                    <!-- Floor buttons for ITC Building -->
+                    <li><button class="floor" onclick="showRooms('ITC Building', 'Ground')">Ground Floor</button></li>
+                    <li><div id="ITCBuildingGroundRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('ITC Building', '2nd')">2nd Floor</button></li>
+                    <li><div id="ITCBuildingSecondRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('ITC Building', '3rd')">3rd Floor</button></li>
+                    <li><div id="ITCBuildingThirdRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('ITC Building', '4th')">4th Floor</button></li>
+                    <li><div id="ITCBuildingfourthRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('ITC Building', '5th')">5th Floor</button></li>
+                    <li><div id="ITCBuildingfifthRooms" class="rooms-container"></div></li>
+                </ul>
+            </li>
+            <li class="category" onclick="showBuildingDetails('MAB Building')">
+                MAB Building
+                <ul class="floors" style="display: none;">
+                    <!-- Floor buttons for MAB Building -->
+                    <li><button class="floor" onclick="showRooms('MAB Building', 'Ground')">Ground Floor</button></li>
+                    <li><div id="MABBuildingGroundRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('MAB Building', '2nd')">2nd Floor</button></li>
+                    <li><div id="MABBuildingSecondRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('MAB Building', '3rd')">3rd Floor</button></li>
+                    <li><div id="MABBuildingThirdRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('MAB Building', '4th')">4th Floor</button></li>
+                    <li><div id="MABBuildingfourthRooms" class="rooms-container"></div></li>
+                </ul>
+            <li
+            class="category" onclick="showBuildingDetails('Medical & Dental Clinic Building')">Medical & Dental Clinic Building
+            <ul class="floors" style="display: none;"></ul>
+            <li><div id="Medical & Dental Clinic BuildingGroundRooms" class="rooms-container"></div></li>
+            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <li class="category" onclick="showBuildingDetails('Old Building')">
+                Old Building
+               <ul class="floors" style="display: none;">
+                   <!-- Floor buttons for Old Building -->
+                   <li><button class="floor" onclick="showRooms('Old Building', 'Ground')">Ground Floor</button></li>
+                   <li><div id="OLDBuildingGroundRooms" class="rooms-container"></div></li>
+                   <li><button class="floor" onclick="showRooms('Old Building', '2nd')">2nd Floor</button></li>
+                   <li><div id="OLDBuildingSecondRooms" class="rooms-container"></div></li>
+                   <li><button class="floor" onclick="showRooms('Old Building', '3rd')">3rd Floor</button></li>
+                   <li><div id="OLDBuildingthirdRooms" class="rooms-container"></div></li>
+               </ul>
+            <li
+             class="category" onclick="showBuildingDetails('Old Building (South Wing)')">Old Building (South Wing)
+             <ul class="floors" style="display: none;"></ul>
+            <li><div id="Old Building (South Wing)thirdRooms" class="rooms-container"></div></li>
+            </li>
+            <li class="category" onclick="showBuildingDetails('R&D Building')">
+                R&D Building
+               <ul class="floors" style="display: none;">
+                   <!-- Floor buttons for R&D Building -->
+                   <li><button class="floor" onclick="showRooms('R&D Building', 'Ground')">Ground Floor</button></li>
+                   <li><div id="R&DBuildingGroundRooms" class="rooms-container"></div></li>
+                   <li><button class="floor" onclick="showRooms('R&D Building', '2nd')">2nd Floor</button></li>
+                   <li><div id="R&DBuildingSecondRooms" class="rooms-container"></div></li>
+                   <li><button class="floor" onclick="showRooms('R&D Building', '3rd')">3rd Floor</button></li>
+                   <li><div id="R&DBuildingthirdRooms" class="rooms-container"></div></li>
+                   <li><button class="floor" onclick="showRooms('R&D  Building', '4th')">4th Floor</button></li>
+                   <li><div id="R&D BuildingfourthRooms" class="rooms-container"></div></li>
+                   <li><button class="floor" onclick="showRooms('R&D  Building', '5th')">5th Floor</button></li>
+                   <li><div id="R&D BuildingfifthRooms" class="rooms-container"></div></li>
+               </ul>
+            <li class="category" onclick="showBuildingDetails('Snagah Building')">
+                Snagah Building
+                <ul class="floors" style="display: none;">
+                    <!-- Floor buttons for Snagah Building -->
+                    <li><button class="floor" onclick="showRooms('Snagah Building', 'Ground')">Ground Floor</button></li>
+                    <li><div id="SnagahBuildingGroundRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Snagah Building', '2nd')">2nd Floor</button></li>
+                    <li><div id="SnagahBuildingSecondRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Snagah Building', '3rd')">3rd Floor</button></li>
+                    <li><div id="SnagahBuildingThirdRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Snagah Building', '4th')">4th Floor</button></li>
+                    <li><div id="SnagahBuildingfourthRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Snagah Building', '5th')">5th Floor</button></li>
+                    <li><div id="SnagahBuildingfifthRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Snagah Building', '6th')">6th Floor</button></li>
+                    <li><div id="SnagahBuildingsixthRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Snagah Building', '7th')">7th Floor</button></li>
+                    <li><div id="SnagahBuildingseventhRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Snagah Building', '8th')">8th Floor</button></li>
+                    <li><div id="SnagahBuildingeighthRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Snagah Building', '9th')">9th Floor</button></li>
+                    <li><div id="SnagahBuildingnininthRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Snagah Building', '10th')">10th Floor</button></li>
+                    <li><div id="SnagahBuildingtenthRooms" class="rooms-container"></div></li>
+                </ul>
+            </li>
+            <li
+            class="category" onclick="showBuildingDetails('University Gymnasium')">University Gymnasium
+            <ul class="floors" style="display: none;"></ul>
+            <li><div id="University GymnasiumGroundRooms" class="rooms-container"></li>
+            </li>
+           
+            <li
+            class="category" onclick="showBuildingDetails('University Quadrangle')">University Quadrangle
+            <ul class="floors" style="display: none;"></ul>
+            <li><div id="University QuadrangleGroundRooms" class="rooms-container"></div></li>
+            </li>
+            <li class="category" onclick="showBuildingDetails('Wellness Building')">
+                Wellness Building
+                <ul class="floors" style="display: none;">
+                    <!-- Floor buttons for Wellness Building -->
+                    <li><button class="floor" onclick="showRooms('Wellness Building', 'Ground')">Ground Floor</button></li>
+                    <li><div id="WellnessBuildingGroundRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Wellness Building', '2nd')">2nd Floor</button></li>
+                    <li><div id="WellnessBuildingSecondRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Wellness Building', '3rd')">3rd Floor</button></li>
+                    <li><div id="WellnessBuildingthirdRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Wellness Building', '4th')">4th Floor</button></li>
+                    <li><div id="WellnessBuildingfourthRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Wellness Building', '5th')">5th Floor</button></li>
+                    <li><div id="WellnessBuildingfifthRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Wellness Building', '6th')">6th Floor</button></li>
+                    <li><div id="WellnessBuildingsixthRooms" class="rooms-container"></div></li>
+                    <li><button class="floor" onclick="showRooms('Wellness Building', '7th')">7th Floor</button></li>
+                    <li><div id="WellnessBuildingsevethRooms" class="rooms-container"></div></li>
+                </ul>
+            </li>
+           
+                </ul>
+                <button id="searchButton" onclick="toggleSearchOverlay()"></button>
+            </div>
+            <div class="building-details-tab" id="buildingDetailsTab">
+                <button class="exit-button" onclick="closeBuildingDetails()"></button>
+                <h2 id="buildingName"></h2>
+                <p id="description">Description goes here.</p>
+                <button class="building-details-list-title" onclick="toggleBuildingDetails()">Building Details</button>
+                <div class="floors-rooms-panel" id="floorsRoomsPanel">
+                    <!-- Floors and Rooms will be dynamically generated here -->
+                </div>
+                <!-- Modified "Get Directions" button -->
+                <button class="direction-button" onclick="getDirections()">Get Directions</button>
+            </div>
+           
+    <!--   ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺  ───────── ౨ JAVASCRIPT AREA ৎ ───────── ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦   */ -->
+       <script src="js-roomsfunctions.js"></script>
+       <script src="js-searchresults.js"></script>
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <button class="square-button ITC" onclick="showDialogBox('ITC Building')">ITC Building</button>
+    <button class="square-button Snagah" onclick="showDialogBox('Snagah Building')">Snagah Building</button>
+    <button class="square-button Wellness" onclick="showDialogBox('Wellness Building')">Wellness Building</button>
+    <button class="square-button RD" onclick="showDialogBox('R&D Building')">R&D Building</button>
+    <button class="square-button Old" onclick="showDialogBox('Old Building')">Old Building</button>
+    <button class="square-button Engineering" onclick="showDialogBox('Engineering Laboratory Building')">Engineering Laboratory Building</button>
+    <button class="square-button MAB" onclick="showDialogBox('MAB Building')">MAB Building</button>
+    <button class="square-button ITB" onclick="showDialogBox('ITB Building')">ITB Building</button>
+    <button class="square-button Dormitory" onclick="showDialogBox('Dormitory Building')">Dormitory Building</button>
+    <button class="square-button UniversityGymnasium" onclick="showDialogBox('University Gymnasium')">University Gymnasium</button>
+    <button class="square-button UniversityQuadrangle" onclick="showDialogBox('University Quadrangle')">University Quadrangle</button>
+    <button class="square-button Gate4" onclick="showDialogBox('Gate-4')">Gate-4</button>
+    <button class="square-button Gate5" onclick="showDialogBox('Gate-5')">Gate-5</button>
+    <button class="square-button Gate1" onclick="showDialogBox('Gate-1')">Gate-1</button>
+    <button class="square-button Gate2" onclick="showDialogBox('Gate-2')">Gate-2</button>
+    <button class="square-button Gate3" onclick="showDialogBox('Gate-3')">Gate-3</button>
+    <button class="square-button OBS" onclick="showDialogBox('Old Building (South Wing)')">Old Building (South Wing)</button>
+    <button class="square-button MDCB" onclick="showDialogBox('Medical & Dental Clinic Building')">Medical & Dental Clinic Building</button>
+    <!-- Dialog Box -->
+    <div class="dialog-box" id="dialogBox">
+        <p id="buildingDescription"></p>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="container">
+        <!-- About button -->
+        <button id="openAboutTab">ABOUT</button> <!-- Button to show the About tab -->
+    </div>
+   
+
+
+
+
+
+
+
+
+    <div id="aboutTab" class="side-tab"> <!-- Side tab for About section -->
+        <button id="closeAboutTab">CLOSE</button> <!-- Button to close the About tab -->
+        <!-- About tab content -->
+        <h2>About Us</h2>
+        <p>Welcome to our website! We are dedicated to providing...</p>
+        <p>Contact us at: example@email.com</p>
+    </div>
+   
+    <script src="js-about.js"></script> <!-- Include your JavaScript file -->
+   
+
+
+
+
+   
+
+
+
+
+    <script>
+        function selectBuilding(buildingName) {
+            // Set the value of the "From" input field to the selected building's name
+            document.getElementById('from').value = buildingName;
+        }
+        // Show building details
+    function showDialogBox(buildingName) {
+        showLandmarkIcon(buildingName);
+            var dialogBox = document.getElementById('dialogBox');
+            var description = document.getElementById('buildingDescription');
+            var buildingDescription = '';
+    var buildingDetailsTab = document.getElementById('buildingDetailsTab');
+    buildingDetailsTab.classList.add('active');
+    var buildingNameElement = document.getElementById(['buildingName']);
+    buildingNameElement.textContent = buildingName;
+ 
+    var descriptionElement = document.getElementById('description');
+    descriptionElement.textContent = getDescription(buildingName);
+   
+    var floorsRoomsPanel = document.getElementById('floorsRoomsPanel');
+    floorsRoomsPanel.innerHTML = ''; // Clear previous floors and rooms
+    var buildingFloors = Object.keys(buildings[buildingName]);
+    buildingFloors.forEach(function (floor, index) {
+   
+    var floorButton = document.createElement('button');
+    floorButton.textContent = floor;
+    floorButton.classList.add('floor');
+    floorButton.onclick = function () {
+        showRooms(buildingName, index);
+    };
+    floorsRoomsPanel.appendChild(floorButton);
+    var roomsListDiv = document.createElement('div');
+    roomsListDiv.id = `${buildingName.replace(/\s+/g, '')}${index}-Rooms`;
+    roomsListDiv.classList.add('rooms-container');
+    floorsRoomsPanel.appendChild(roomsListDiv);
+    // Toggle the 'active' class for the floors
+    var floors = document.querySelectorAll('.floors');
+    floors.forEach(function(floor) {
+    if (floor.id === `${buildingName.replace(/\s+/g, '')}${index}-Rooms`) {
+    floor.classList.add('active');
+    } else {
+    floor.classList.remove('active');
+    }
+    });
+    });
+   
+ document.getElementById('searchOverlay').style.display = 'none'; // Hide the search overlay
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function closeBuildingDetails() {
+    var buildingDetailsTab = document.getElementById('buildingDetailsTab');
+    buildingDetailsTab.classList.remove('active');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Clear the content of the building details here
+    var buildingNameElement = document.getElementById('buildingName');
+    buildingNameElement.textContent = '';
+    var descriptionElement = document.getElementById('description');
+    descriptionElement.textContent = '';
+    var floorsRoomsPanel = document.getElementById('floorsRoomsPanel');
+    floorsRoomsPanel.innerHTML = '';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Hide the Landmark icons
+   var imageIds = [
+    "itcLandmarkIcon",
+    "snagahLandmarkIcon",
+    "oldLandmarkIcon",
+    "universityquadrangleLandmarkIcon",
+    "universitygymnasiumLandmarkIcon",
+    "gate-4LandmarkIcon",
+    "gate-3LandmarkIcon",
+    "gate-2LandmarkIcon",
+    "wellnessLandmarkIcon",
+    "mabLandmarkIcon",
+    "gate-1LandmarkIcon",
+    "engineeringlaboratoryLandmarkIcon",
+    "dormitoryLandmarkIcon",
+    "itbLandmarkIcon",
+    "medical&dentalclinicLandmarkIcon",
+    "old(southwing)LandmarkIcon",
+    "r&dLandmarkIcon",
+    "gate-5LandmarkIcon"
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    imageIds.forEach(function (id) {
+        var element = document.getElementById(id);
+        if (element !== null) {
+            element.style.display = "none";
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Show the search overlay again
+    document.getElementById('searchOverlay').style.display = 'block';
+}
+function showLandmarkIcon(buildingName) {
+    // hide all landmark icons first
+    var imageIds = [
+    "itcLandmarkIcon",
+ "snagahLandmarkIcon",
+    "oldLandmarkIcon",
+    "universityquadrangleLandmarkIcon",
+    "universitygymnasiumLandmarkIcon",
+    "gate-4LandmarkIcon",
+    "gate-3LandmarkIcon",
+    "gate-2LandmarkIcon",
+    "wellnessLandmarkIcon",
+    "mabLandmarkIcon",
+    "gate-1LandmarkIcon",
+    "engineeringlaboratoryLandmarkIcon",
+    "dormitoryLandmarkIcon",
+    "itbLandmarkIcon",
+    "medical&dentalclinicLandmarkIcon",
+    "old(southwing)LandmarkIcon",
+    "r&dLandmarkIcon",
+    "gate-5LandmarkIcon"
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    imageIds.forEach(function (id) {
+      let element = document.getElementById(id);
+      if (element !== null) {
+        element.style.display = "none";
+      }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // show the 'buildingName' landmarkIcon only
+    let imageName = buildingName.replace(/ Building/g, "");
+    imageName = imageName.replace(/ /g, "").toLowerCase(); // remove spaces and convert to lower case
+    let imageId = imageName + "LandmarkIcon";
+    let landmarkElement = document.getElementById(imageId);
+    if (landmarkElement !== null) {
+      landmarkElement.style.display = "block";
+    } else {
+      alert("Failed to find element with id: " + imageId);
+    }
+}  // Close dialog box
+        function closeDialogBox() {
+            var dialogBox = document.getElementById('dialogBox');
+            dialogBox.style.display = 'none';
+        }
+        document.querySelectorAll('.category').forEach(item => {
+  item.addEventListener('click', function(event){
+    if (event.target === event.currentTarget) {
+        const buildingName = event.target.childNodes[0].nodeValue.trim();
+        showLandmarkIcon(buildingName);
+    }
+  });
+});
+
+
+
+
+// Function to show the building details tab
+function showBuildingDetailsTab() {
+    // Make the building details tab visible
+    buildingDetailsTab.style.opacity = '1';
+    buildingDetailsTab.style.transform = 'scale(1)';
+}
+
+
+
+
+
+
+
+
+// Function to hide the building details tab
+function hideBuildingDetailsTab() {
+    // Make the building details tab invisible
+    buildingDetailsTab.style.opacity = '0';
+    buildingDetailsTab.style.transform = 'scale(0.5)';
+}
+
+
+
+
+
+
+
+
+// Get all the building buttons
+const buildingButtons = document.querySelectorAll('.square-button');
+
+
+
+
+
+
+
+
+// Add click event listeners to each building button
+buildingButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Hide the building details tab
+        hideBuildingDetailsTab();
+        // Show the building details tab after a short delay
+        setTimeout(showBuildingDetailsTab, 100);
+    });
+});
+
+
+
+
+
+
+
+
+$(document).ready(function() {
+    $('#map-container').panzoom({
+        $zoomIn: $('.zoom-in'), // Element to trigger zoom in
+        $zoomOut: $('.zoom-out'), // Element to trigger zoom out
+        minScale: 0.5, // Minimum scale (zoom out)
+        maxScale: 3, // Maximum scale (zoom in)
+        startTransform: 'scale(1)' // Initial scale
+    });
+});
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('#map-container').panzoom(); // Initialize Panzoom on the map container
+        });
+    </script>
+
+
+
+
+    </script>
+
+
+
+
+    <script>
+        // JavaScript for adjusting styles based on screen size
+        window.addEventListener('resize', function() {
+            var screenWidth = window.innerWidth;
+            var containerWidth = screenWidth > 768 ? '80%' : '90%'; // Adjust container width based on screen width
+
+
+
+
+            // Update inline styles for the container
+            document.querySelector('.container').style.width = containerWidth;
+
+
+
+
+            // Update inline styles for boxes if needed
+            if (screenWidth <= 768) {
+                document.querySelectorAll('.box').forEach(function(box) {
+                    box.style.width = '100%';
+                });
+            } else {
+                document.querySelectorAll('.box').forEach(function(box) {
+                    box.style.width = '50%';
+                });
+            }
+        });
+
+
+
+
+        // Call the resize event handler initially
+        window.dispatchEvent(new Event('resize'));
+    </script>
+    <script>
+        // JavaScript for adjusting sizes based on screen size
+        window.addEventListener('resize', function() {
+            var screenWidth = window.innerWidth;
+
+
+
+
+            // Adjust container width based on screen width
+            var containerWidth = screenWidth > 768 ? '80%' : '90%';
+            document.querySelector('.container').style.width = containerWidth;
+
+
+
+
+            // Adjust box width based on screen width
+            var boxWidth = screenWidth > 768 ? '50%' : '90%';
+            document.querySelectorAll('.box').forEach(function(box) {
+                box.style.width = boxWidth;
+            });
+        });
+
+
+
+
+        // Call the resize event handler initially
+        window.dispatchEvent(new Event('resize'));
+    </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

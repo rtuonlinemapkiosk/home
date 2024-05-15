@@ -1,0 +1,208 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTU Map Kiosk</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="rooms-functions.js"></script>
+    <link rel="stylesheet" href="css-buildings.css">
+   
+</head>
+<body>
+    <ul>
+        <button class="square-button ITC">ITC Building</button>
+        <button class="square-button Snagah">Snagah Building</button>
+        <!-- Add similar onclick attributes for other buildings -->
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Dialog Box -->
+    <div class="dialog-box" id="dialogBox">
+        <p id="buildingDescription"></p>
+        <button onclick="closeDialogBox()">Thanks!</button>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        // Show building details
+        function showBuildingDetails(buildingName) {
+            var dialogBox = document.getElementById('dialogBox');
+            var description = document.getElementById('buildingDescription');
+            var buildingDescription = '';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // Set different descriptions for each building
+            switch (buildingName) {
+                case 'ITC Building':
+                    buildingDescription = 'sa engineering';
+                    break;
+                case 'Snagah Building':
+                    buildingDescription = 'cbea ata';
+                    break;
+                case 'Wellness Building':
+                    buildingDescription = 'yung may swimming pool sa taas';
+                    break;
+                case 'R&D Building':
+                    buildingDescription = 'sa ihk ata';
+                    break;
+                case 'Old Building':
+                    buildingDescription = 'ginawa para may silong ako habang naglalakad';
+                    break;
+                case 'Engineering Laboratory Building':
+                    buildingDescription = 'cad';
+                    break;
+                case 'MAB Building':
+                    buildingDescription = 'sa cas ata';
+                    break;
+                case 'ITB Building':
+                    buildingDescription = 'engineering din na merong mga office';
+                    break;
+                case 'Dormitory Building':
+                    buildingDescription = 'halatang mabaho';
+                    break;
+                case 'University Quadrangle':
+                    buildingDescription = 'dito may signal ang freewififorall';
+                    break;
+                case 'University Gymnasium':
+                    buildingDescription = 'baho sa loob';
+                    break;
+                case 'Medical & Dental Clinic Building':
+                    buildingDescription = 'dito nanghingi ng excuse letter si eya';
+                    break;
+                case 'Old Building (South Wing)':
+                    buildingDescription = 'malay ko';
+                    break;
+                case 'Gate-1':
+                    buildingDescription = 'yung gate papuntang parking';
+                    break;
+                case 'Gate-2':
+                    buildingDescription = 'main entrance';
+                    break;
+                case 'University Entrance/Exit Gate-3':
+                    buildingDescription = 'yung isang gate na hindi ginagamit';
+                    break;
+                case 'Sacrepante Exit Gate-4':
+                    buildingDescription = 'labasan';
+                    break;
+                case 'Gate-5':
+                    buildingDescription = 'para sa kotse lang';
+                    break;
+                default:
+                    buildingDescription = 'Default description.';
+                    break;
+            }
+
+
+
+
+
+
+
+
+            description.textContent = buildingDescription;
+            dialogBox.style.display = 'block';
+        }
+
+
+
+
+
+
+
+
+        // Close dialog box
+        function closeDialogBox() {
+            var dialogBox = document.getElementById('dialogBox');
+            dialogBox.style.display = 'none';
+        }
+    </script>
+
+
+<script>
+    // Function to update scale on zoom
+    function updateScale() {
+        var scale = window.innerWidth / window.outerWidth; // Calculate scale based on window width
+        document.documentElement.style.transform = 'scale(' + scale + ')'; // Apply scale to HTML element
+    }
+
+
+    // Event listener for zoom
+    window.addEventListener('resize', updateScale);
+
+
+    // Call the function initially
+    updateScale();
+   
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

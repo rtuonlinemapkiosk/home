@@ -1,0 +1,247 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2; /* Change background color to gray */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+    .square-button {
+    position: fixed;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background-color: #48b54c;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 1; /* Ensure the button is above other elements */
+}
+.square-button:hover {
+    transform: translate(-50%, -50%) scale(1.1); /* Scale up by 10% on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add box shadow on hover */
+}
+.square-button.ITC {
+    position: fixed;
+    left: 41.89%; /* Adjust the horizontal position of the ITC Building button */
+    top: 34.89%; /* Adjust the vertical position of the ITC Building button */
+    width: 170px; /* Adjust the width of the ITC Building button */
+    height: 280px; /* Adjust the height of the ITC Building button */
+    background-color: #d2be6d; /* Change background color for University Gymnasium button */
+}
+.square-button.Snagah {
+    position: fixed;
+    left: 84.4999%; /* Adjust the horizontal position of the Snagah Building button */
+    top: 17%; /* Adjust the vertical position of the Snagah Building button */
+    width: 80px; /* Adjust the width of the Snagah Building button */
+    height: 200px; /* Adjust the height of the Snagah Building button */
+    background-color: #b9c14b; /* Change background color for Snagah Building button */
+}
+.square-button.UniversityGymnasium {
+    position: fixed;
+    left: 44.9%; /* Adjust the horizontal position of University Gymnasium button */
+    top: 68.3%; /* Adjust the vertical position of University Gymnasium button */
+    width: 150px; /* Adjust the width of University Gymnasium button */
+    height: 180px; /* Adjust the height of University Gymnasium button */
+    background-color: #c85f5f; /* Change background color for University Gymnasium button */
+}
+.square-button.Gate3 {
+    position: fixed;
+    left: 52%; /* Adjust the horizontal position of Gate-3 button */
+    top: 80.5%; /* Adjust the vertical position of Gate-3 button */
+    width: 75px; /* Adjust the width of Gate-3 button */
+    height: 30px; /* Adjust the height of Gate-3 button */
+    background-color: #a27339; /* Change background color for Gate-3 button */
+}
+.square-button.Wellness {
+    position: fixed;
+    left: 64%; /* Adjust the horizontal position of the Wellness Building button */
+    top: 72.5%; /* Adjust the vertical position of the Wellness Building button */
+    width: 200px; /* Adjust the width of the Wellness Building button */
+    height: 120px; /* Adjust the height of the Wellness Building button */
+    background-color: #8a66d0; /* Change background color for Wellness Building button */
+}
+.square-button.Gate2 {
+    position: fixed;
+    left: 65%; /* Adjust the horizontal position of Gate-2 button */
+    top: 81.5%; /* Adjust the vertical position of Gate-2 button */
+    width: 75px; /* Adjust the width of Gate-2 button */
+    height: 30px; /* Adjust the height of Gate-2 button */
+    background-color: #a27339; /* Change background color for Gate-3 button */
+}
+.square-button.RD {
+    position: fixed;
+    left: 79.99%; /* Adjust the horizontal position of the R&D Building button */
+    top: 20%; /* Adjust the vertical position of the R&D Building button */
+    width: 70px; /* Adjust the width of the R&D Building button */
+    height: 200px; /* Adjust the height of the R&D Building button */
+    background-color: #c16fd4; /* Change background color for R&D Building button */
+}
+.square-button.Old {
+    position: fixed;
+    left: 57%;
+    top: 54.5%;
+    clip-path: polygon(81% 0, 100% 0, 100% 55%, 0 55%, 0 45%, 81% 45%);
+    width: 700px;
+    height: 800px;
+    background-color: hsl(319, 59%, 72%);
+}
+.square-button.Engineering {
+    position: fixed;
+    left: 43.69%; /* Adjust the horizontal position of the Engineering Laboratory Building button */
+    top: 13.99%; /* Adjust the vertical position of the Engineering Laboratory Building button */
+    width: 100px; /* Adjust the width of the Engineering Laboratory Building button */
+    height: 100px; /* Adjust the height of the Engineering Laboratory Building button */
+    background-color: #c14545; /* Change background color for Engineering Laboratory Building button */
+}
+.square-button.MAB {
+    position: fixed;
+    left: 64.5%;
+    top: 61.8%;
+    clip-path: polygon(0 64%, 0 41%, 100% 41%, 100% 100%, 70% 100%, 70% 64%);
+    width: 490px;
+    height: 290px;
+    background-color: #6d9501;
+}
+.square-button.ITB {
+    position: fixed;
+    left: 54.49%; /* Adjust the horizontal position of the ITB Building button */
+    top: 25.15%; /* Adjust the vertical position of the ITB Building button */
+    width: 250px; /* Adjust the width of the ITB Building button */
+    height: 250px; /* Adjust the height of the ITB Building button */
+    background-color: #63c2cb; /* Change background color for ITB Building button */
+    clip-path: polygon(0 23%, 100% 22%, 100% 65%, 60% 66%, 61% 81%, 38% 81%, 38% 66%, 0 65%);
+}
+.square-button.Gate5 {
+    position: fixed;
+    left: 89%; /* Adjust the horizontal position of Gate-5 button */
+    top: 26%; /* Adjust the vertical position of Gate-5 button */
+    width: 75px; /* Adjust the width of Gate-5 button */
+    height: 30px; /* Adjust the height of Gate-5 button */
+    background-color: #a27339; /* Change background color for Gate-3 button */
+}
+.square-button.Gate1 {
+    position: fixed;
+    left: 75.5%; /* Adjust the horizontal position of Gate-1 button */
+    top: 80.5%; /* Adjust the vertical position of Gate-1 button */
+    width: 75px; /* Adjust the width of Gate-1 button */
+    height: 30px; /* Adjust the height of Gate-1 button */
+    background-color: #a27339; /* Change background color for Gate-3 button */
+}
+.square-button.UniversityQuadrangle {
+    position: fixed;
+    left: 58.49%; /* Adjust the horizontal position of University Quadrangle button */
+    top: 41.99%; /* Adjust the vertical position of University Quadrangle button */
+    width: 380px; /* Adjust the width of University Quadrangle button */
+    height: 150px; /* Adjust the height of University Quadrangle button */
+    background-color: #3e9555; /* Change background color for University Quadrangle button */
+}
+.square-button.Gate4 {
+    position: fixed;
+    left: 33.99%; /* Adjust the horizontal position of Sacrepante Exit Gate-4 button */
+    top: 55%; /* Adjust the vertical position of Sacrepante Exit Gate-4 button */
+    width: 75px; /* Adjust the width of Sacrepante Exit Gate-4 button */
+    height: 30px; /* Adjust the height of Sacrepante Exit Gate-4 button */
+    background-color: #a27339; /* Change background color for Gate-3 button */
+}
+.square-button.OBS {
+    position: fixed;
+    left: 68.2%; /* Adjust the horizontal position of Sacrepante Exit Gate-4 button */
+    top: 22.5%; /* Adjust the vertical position of Sacrepante Exit Gate-4 button */
+    width: 80px; /* Adjust the width of Sacrepante Exit Gate-4 button */
+    height: 200px; /* Adjust the height of Sacrepante Exit Gate-4 button */
+    background-color: hsl(319, 59%, 72%);
+}
+.square-button.MDCB {
+    position: fixed;
+    left: 63.89%; /* Adjust the horizontal position of Sacrepante Exit Gate-4 button */
+    top: 22.99%; /* Adjust the vertical position of Sacrepante Exit Gate-4 button */
+    width: 65px; /* Adjust the width of Sacrepante Exit Gate-4 button */
+    height: 200px; /* Adjust the height of Sacrepante Exit Gate-4 button */
+    background-color: hsl(118, 47%, 52%); /* Change background color for Sacrepante Exit Gate-4 button */
+}
+.square-button.Dormitory {
+    position: fixed;
+    left: 51%; /* Adjust the horizontal position of Sacrepante Exit Gate-4 button */
+    top: 12.99%; /* Adjust the vertical position of Sacrepante Exit Gate-4 button */
+    width: 140px; /* Adjust the width of Sacrepante Exit Gate-4 button */
+    height: 80px; /* Adjust the height of Sacrepante Exit Gate-4 button */
+    background-color: hsl(14, 71%, 61%); /* Change background color for Sacrepante Exit Gate-4 button */
+}
+/* Dialog Box Styles */
+.dialog-box {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#map {
+    position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#landmarkIcon {
+    position: absolute;
+    top: 50px; /* Adjust top position as needed */
+    left: 50px; /* Adjust left position as needed */
+    z-index: 9999; /* Ensure it's above other elements */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

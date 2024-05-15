@@ -1,0 +1,219 @@
+/* CSS for the clickable list items */
+.search-results {
+   
+    right: 1px;
+    list-style-type: none; /* Remove default list styles */
+    padding: 0;
+    position: relative; /* Use relative positioning */
+    margin-top: 10px; /* Adjust top margin to accommodate estimated time */
+    max-height: 550px;
+   
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.estimated-time {
+    position: relative;
+    top: 0px; /* Adjust as needed */
+    left: 50px; /* Adjust as needed */
+    width: 90px;
+    text-align: left;
+    font-size: 17px; /* Adjust as needed */
+    color: #000000; /* Adjust color as needed */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.search-results li {
+    left: 1px;
+    cursor: pointer; /* Change cursor to pointer on hover */
+    padding: 5px 10px; /* Add padding to the list items */
+    margin-bottom: 5px; /* Add margin between list items */
+    background-color: #ffffff; /* Light gray background color */
+    text-align: left;
+    border-radius: 5px; /* Add rounded corners */
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.search-results li:hover {
+    background-color: #e0e0e0; /* Darken background color on hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.search-results li:active {
+    background-color: #d0d0d0; /* Darken background color when clicked */
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.divider {
+    border-top: 1px solid #ccc; /* Adjust color and style as needed */
+    margin-top: 10px; /* Adjust spacing as needed */
+    margin-bottom: 15px; /* Adjust spacing as needed */
+    width: 250px; /* Adjust the width as needed */
+    margin-left: px; /* Align the divider to the left */
+    border-top: 1px solid #ccc; /* Add a solid border on top */
+}
+.icon {
+    /* Add your custom styles for the icon here */
+    width: 20px; /* Example width */
+    height: 20px; /* Example height */
+    margin-right: 10px; /* Example margin */
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .scrollable {
+    overflow-y: auto;
+  }
+ 
+/* Back button style */
+.back-button {
+    background-color: #ffffff; /* Button background color */
+    color: #333333; /* Button text color */
+    padding: 5px; /* Circular padding */
+    border-radius: 60%; /* Make the button circular */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    display: inline-flex; /* Display as inline-flex to align icon and text */
+    align-items: center; /* Align items vertically */
+      /* Adjust position */
+      position: absolute; /* Position the button relative to its closest positioned ancestor */
+      top: 20px; /* Adjust top distance */
+      left: 50px; /* Adjust left distance */
+      z-index: 2; /* Ensure the button is above other elements */
+    width: 20px; /* Set the width */
+    height: 20px; /* Set the height */
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.back-button:hover {
+    background-color: #f0f0f0; /* Button background color on hover */
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.back-button img {
+    width: 20px; /* Adjust icon width */
+    height: 20px; /* Adjust icon height */
+    margin-right: 5px; /* Adjust space between icon and text */
+}
+#returnButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+
+

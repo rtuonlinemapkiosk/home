@@ -1,0 +1,390 @@
+body {
+    background-image: (''); /* sample picture lang to */
+    background-size: cover;
+    background-color: #246885; /* Use #246885 as the background color */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    opacity: 0; /* Start with a transparent body */
+    animation: fadeIn 0.5s ease forwards; /* Animation to fade in */
+    overflow: hidden; /* Hide scrollbar */
+}
+
+
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+.full-screen-image {
+    width: 80%;
+    height: 20%;
+    object-fit: cover; /* This ensures the image covers the entire screen without distortion */
+}
+
+
+
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+        .map-overlay {
+            position: absolute;
+            top: 25%;
+            left: 3%;
+            transform: translate(-0%, -0%);
+            z-index: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+            width: 290px;
+            max-width: calc(100% - 20px);
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            transition: width 0.5s ease;
+            max-height: 500px; /* Adjust the maximum height as needed */
+            overflow-y: auto;
+           
+        }
+        #search {
+            flex: 1;
+            padding-right: 40px; /* Added padding for the icon */
+            width: 100%; /* Ensure the search input takes up full width */
+           
+        }
+        #searchButton {
+            position: absolute;
+            top: 33px;
+            right: 39px;
+            background-image: url('https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png');
+            background-size: cover;
+            width: 25px;
+            height: 25px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer; /* Makes the mouse cursor appear as a pointer, indicating clickability */
+            transition: background-color 0.3s ease; /* Smooth transition for background color change */
+        }
+       
+        #searchButton:hover {
+            background-color: rgba(0, 0, 0, 0.1); /* Slight darkening on hover to indicate interactivity */
+        }
+        .map-overlay.active {
+            width: 300px; /* Adjust the width as needed */
+            max-height: 550px; /* Adjust the maximum height as needed */
+           
+           
+        }
+        .map-overlay input {
+            flex: 1;
+            padding: 9px;
+            font-size: 14px;
+            border: none;
+            border-radius: 15px;
+            background-image: url('https://images.vexels.com/media/users/3/132068/isolated/lists/f9bb81e576c1a361c61a8c08945b2c48-search-icon.png');
+            background-size: 20px 20px;
+            background-position: 10px center;
+            background-repeat: no-repeat;
+            padding-left: 35px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: width 0.3s ease;
+            color: rgb(0, 0, 0);
+            background-color: #f2f2f2;
+            overflow-y: auto;
+        }
+        .categories {
+            list-style-type: none; /* Remove bullets */
+            width: 100%;
+            margin-top: 10px;
+            display: none;
+            transition: display 0.3s ease;
+            list-style: none;
+            padding: 0;
+            overflow-y: auto;
+        }
+        .categories.active {
+            display: block;
+        }
+        .category {
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #f2f2f2;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .category:hover {
+            background-color: #e0e0e0;
+        }
+        .building-details-tab {
+            position: absolute;
+            top: 25%;
+            left: 3%;
+            transform: translate(-0%, -0%);
+            z-index: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            max-height: 550px;
+            max-width: calc(100% - 20px);
+            display: none;
+            align-items: center;
+            flex-direction: column;
+            text-align: left;
+            opacity: 0; /* Initially hidden */
+            transform: scale(0.5);
+            animation: popUpBounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+        .building-details-tab.active {
+            font-size: 14px;
+            max-height: 3em; /* Adjust the height for two lines */
+            display: flex;
+            max-height: 500px;
+            text-align: left;
+           
+        }
+        .exit-button {
+            background-image: url('https://clipart-library.com/images/8cGEzKrni.png');
+            background-size: cover;
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .exit-button:hover {
+            filter: brightness(90%);
+        }
+        .exit-button:focus {
+            outline: none;
+        }
+        .building-details-tab-title {
+            font-size: 10px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .direction-button, .building-details-list-title {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 10px;
+            max-height: 500px;
+            transition: background-color 0.5s ease;
+        }
+        .direction-button:hover, .building-details-list-title:hover {
+            background-color: #0056b3;
+        }
+        .building-details-list {
+            margin-top: 12px;
+            transition: display 0.3s ease;
+        }
+        .building-details-list h3 {
+            font-size: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .building-details-list ul {
+            list-style: none;
+            padding: 0;
+            display: none;
+        }
+        .building-details-list li {
+            cursor: pointer;
+            padding: 8px 0;
+        }
+        .building-details-list li:hover {
+            background-color: #f0f0f0;
+        }
+        /* Floors and Rooms panel */
+        .floors-rooms-panel {
+            display: none;
+            margin-top: 20px;
+            width: 100%;
+            padding: 20px;
+            background-color: rgb(242, 242, 242);
+            border-radius: 20px;
+            transition: display 0.3s ease;
+            /* Add a fixed height and enable vertical scrolling */
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .floors-rooms-panel.active {
+            display: block;
+        }
+        .floor {
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #f2f2f2;
+            border: 1px solid #000; /* Retained the black border */
+            border-radius: 20px;
+            margin-bottom: 5px; /* Decreased the space between each button */
+            transition: background-color 0.5s ease;
+            display: block; /* Added to ensure each button takes up full width */
+            width: calc(100% - 40px); /* Added to adjust width similar to building buttons */
+            text-align: left; /* Aligned the text to the left */
+        }
+        .floor:hover {
+            background-color: #e0e0e0;
+        }
+   
+        /*  ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺  ───────── ౨ SCROLL UP & DOWN MODIFIER INSIDE THE BUILDING DETAILS TAB ৎ ───────── ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦   */ *
+        /* Style room links similar to building buttons */
+   
+   
+        .rooms-container a {
+            cursor: pointer;
+            display: flex; /* Make the container flex */
+            align-items: center; /* Center items vertically */
+            padding: 10px 20px;
+            background-color: #f2f2f2;
+            border: 1px solid #000;
+            border-radius: 20px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s ease;
+            width: calc(100% - 40px);
+            text-align: left;
+            text-decoration: none; /* Remove default underline */
+            color: inherit; /* Inherit text color */
+        }
+    /* Move the icon to the left */
+    .rooms-container a .room-icon {
+        width: 20px; /* Adjust icon width */
+        height: 20px; /* Adjust icon height */
+        margin-right: 10px; /* Adjust margin between icon and room name */
+        background-image: url('https://icons.iconarchive.com/icons/iconsmind/outline/256/Turn-Down-2-icon.png'); /* Replace with the URL of the new icon */
+        background-size: contain; /* Ensure the icon fits properly */
+        background-repeat: no-repeat; /* Prevent icon from repeating */
+    }
+   
+   
+   
+   
+    /* Apply hover effect */
+    .rooms-container a:hover {
+        background-color: #e0e0e0;
+    }
+        /* Style room buttons similar to building buttons */
+        .rooms-container button {
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #f2f2f2;
+            border: 1px solid #000;
+            border-radius: 20px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s ease;
+            display: block;
+            width: calc(100% - 40px);
+            text-align: left;
+        }
+        .rooms-container button:hover {
+        background-color: #e0e0e0;
+       
+    }
+        /*  ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺  ───────── ౨ SUGGESTION ROOM BUTTONS MODIFIER ৎ ───────── ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦   */
+        /* Suggestion Overlay Positioning */
+    #suggestionOverlay {
+        position: absolute;
+        top: calc(100% + 10px); /* Position it below the search input */
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        overflow-y: auto;
+        max-height: 200px;
+        display: none; /* Hide by default */
+    }
+    /* Show Suggestion Overlay when Input is Focused and Characters Typed */
+    .map-overlay input:focus + #suggestionOverlay:not(:empty) {
+        display: block;
+    }
+    /* Style for Suggestion Items */
+    .suggestion-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ccc; /* Optional: Add a border between suggestion items */
+        list-style-type: none; /* Remove default bullet */
+    }
+    .suggestion-item::before {
+        content: ''; /* Ensure content is empty */
+        display: inline-block;
+        width: 20px; /* Adjust width of the bullet icon */
+        height: 20px; /* Adjust height of the bullet icon */
+        background-image: url('https://images.vexels.com/media/users/3/132068/isolated/lists/f9bb81e576c1a361c61a8c08945b2c48-search-icon.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-right: 10px; /* Adjust spacing between the bullet icon and text */
+    }
+    .search-icon {
+        margin-right: 10px; /* Adjust the margin to separate the icon from the suggestion text */
+    }
+    .suggestionText {
+        flex: 1; /* Allow the suggestion text to expand to fill the available space */
+    }
+    #suggestions ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    #suggestions li {
+        background-image: url('https://www.clker.com/cliparts/w/r/Q/0/x/D/search-icon-light-grey-md.png'); /* Replace with the actual URL of the search icon */
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: 15px; /* Ensure the icon size matches the text size */
+        padding-left: 30px; /* Adjust as needed */
+        cursor: pointer;
+    }
+    #suggestions li:hover {
+        background-color: #f0f0f0; /* Gray color on hover */
+        border-radius: 10px; /* Adjust the border-radius value as needed */
+       
+    }
+    /* Modify the room icon */
+    .room-icon {
+        width: 20px; /* Adjust icon width */
+        height: 20px; /* Adjust icon height */
+        bottom: 10px;
+        margin-right: 10px; /* Adjust margin between icon and room name */
+        background-image: url('https://example.com/new-icon.png'); /* Replace with the URL of the new icon */
+        background-size: contain; /* Ensure the icon fits properly */
+        background-repeat: no-repeat; /* Prevent icon from repeating */
+    }
+    .rooms-container ul {
+        list-style-type: none; /* Remove bullets */
+    }
+   
+    /* Remove bullets from room buttons */
+    .rooms-container button {
+        list-style-type: none; /* Remove bullets */
+    }
+    @keyframes popUpBounce {
+        0% { transform: scale(0.5); opacity: 0; }
+        70% { transform: scale(1.1); }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+
+

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTU Map Kiosk</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2; /* Change background color to gray */
+            font-family: Arial, sans-serif;
+        }
+        @keyframes slideDown {
+    from {
+        opacity: 0.9;
+        transform: translateY(-10%); /* Start just slightly above the final position */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* End at the normal position */
+    }
+}
+        .map-overlay {
+            top: -1px;
+            left: -1px;
+            z-index: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 30px; /* Apply curved border radius */
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+            width: 310px; /* Adjust the width of the search tab */
+            max-width: calc(100% - 20px); /* Limit maximum width */
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center items vertically */
+            flex-direction: column; /* Align items in a column */
+            transition: width 0.5s ease; /* Transition width for smooth animation */
+            overflow: hidden; /* Hide overflow during animation */
+            animation: slideDown 0.5s ease-out forwards; /* Apply the slide-down animation */
+        }    
+        #search {
+            /* Existing styles */
+            flex: 1; /* Take remaining space */
+        }
+        .map-overlay.active {
+            width: 500px; /* Expanded width */
+        }
+        .map-overlay input[type="text"], .map-overlay input[type="submit"] {
+    padding: 9px;
+    font-size: 14px;
+    border: none;
+    border-radius: 15px;
+    background-size: 20px 20px;
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    padding-left: 35px;
+    margin-bottom: 10px;
+    width: 100%; /* Increased width from 100% to 90% */
+    box-sizing: border-box;
+    transition: width 0.3s ease;
+    color: rgb(0, 0, 0);
+    background-color: #f2f2f2;
+}
+
+
+
+
+
+
+
+
+.map-overlay input[type="submit"] {
+    background-color: #007BFF; /* Blue background */
+    color: white; /* White text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+
+
+
+
+
+
+
+.map-overlay input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker shade of blue on hover */
+}
+
+
+
+
+
+
+
+
+.map-overlay label {
+    font-weight: bold; /* Make text bold */
+    display: block; /* Ensure labels are on their own line */
+    margin-bottom: 5px; /* Add some space below the label for clarity */
+    color: #333; /* Optional: Set a darker color for better readability */
+}
+        .categories {
+            width: 100%; /* Set categories width to 100% */
+            margin-top: 10px; /* Add margin to separate search input */
+            display: block; /* Show categories */
+            list-style: none; /* Remove default list styling */
+            padding: 0; /* Remove default padding */
+        }
+        .category {
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #f2f2f2;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .category:hover {
+            background-color: #e0e0e0;
+        }
+        .subcategory {
+            margin-left: 20px;
+            display: none;
+        }
+        .subcategory.active {
+            display: block;
+        }
+        .subcategory li {
+            padding: 5px 20px;
+            transition: background-color 0.3s ease;
+        }
+        .subcategory li:hover {
+            background-color: #e0e0e0;
+        }
+        #resultContent {
+            margin-top: 10px;
+            text-align: center;
+            color: black;
+        }
+        /* Additional styles for the back button */
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            color: green;
+            transition: transform 0.3s ease; /* Add transition effect for transform property */
+        }
+        .back-button:hover {
+             text-decoration: underline;
+             transform: scale(1.1); /* Increase scale on hover for a slight zoom effect */
+             
+        }
+        #returnButton {
+    position: absolute;
+    top: 10px;
+    right: 1px;
+    cursor: pointer;
+    z-index: 2; /* Ensure the button is above other elements */
+    width: 20px; /* Set the width */
+    height: 20px; /* Set the height */
+    background-color: #ffffff; /* Button background color */
+    color: #333333; /* Button text color */
+    padding: 5px; /* Circular padding */
+    border-radius: 60%; /* Make the button circular */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    display: inline-flex; /* Display as inline-flex to align icon and text */
+    transition: transform 0.3s ease; /* Add transition effect for transform property */
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Add hover effect */
+#returnButton:hover {
+    background-color: #f2f2f2; /* Light up the button on hover */
+    transform: scale(1.1); /* Increase scale on hover for a slight zoom effect */
+}
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div class="map-overlay" id="searchOverlay">
+        <form id="searchForm">
+            <label for="from">From:</label>
+            <input type="text" id="from" name="from" placeholder="Choose your departure">
+            <br>
+            <label for="to">To:</label>
+            <input type="text" id="to" name="to" placeholder="Choose your destination" readonly>
+            <br>
+            <input type="submit" value="Search">
+        </form>
+        <ul class="categories" id="categories">
+            <li class="category" onclick="selectBuilding('Dormitory Building')">Dormitory Building</li>
+            <li class="category" onclick="selectBuilding('Engineering Laboratory Building')">Engineering Laboratory Building</li>
+            <li class="category" onclick="selectBuilding('Gate-1')">Gate-1</li>
+            <li class="category" onclick="selectBuilding('Gate-2')">Gate-2</li>
+            <li class="category" onclick="selectBuilding('Gate-3')">Gate-3</li>
+            <li class="category" onclick="selectBuilding('Gate-4')">Gate-4</li>
+            <li class="category" onclick="selectBuilding('ITB Building')">ITB Building</li>
+            <li class="category" onclick="selectBuilding('ITC Building')">ITC Building</li>
+            <li class="category" onclick="selectBuilding('MAB Building')">MAB Building</li>
+            <li class="category" onclick="selectBuilding('Medical & Dental Clinic Building')">Medical & Dental Clinic Building</li>
+            <li class="category" onclick="selectBuilding('Old Building')">Old Building</li>
+            <li class="category" onclick="selectBuilding('Old Building(South Wing)')">Old Building (South Wing)</li>
+            <li class="category" onclick="selectBuilding('R&D Building')">R&D Building</li>
+            <li class="category" onclick="selectBuilding('Snagah Building')">Snagah Building</li>
+            <li class="category" onclick="selectBuilding('University Gymnasium')">University Gymnasium</li>
+            <li class="category" onclick="selectBuilding('University Quadrangle')">University Quadrangle</li>
+            <li class="category" onclick="selectBuilding('Wellness Building')">Wellness Building</li>
+        </ul>
+        <!-- Result content -->
+        <div id="resultContent"></div>
+        <div id="backButton" class="back-button" style="display: none;">Back</div>
+        <!-- Replace the button with the icon -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<img id="returnButton" src="https://cdn-icons-png.flaticon.com/512/93/93634.png" alt="Return" class="back-icon">
+    </div>
+    <script>
+        window.onload = function() {
+         // Function to select a building and set its name in the "From" input field
+    function selectBuilding(buildingName) {
+        // Set the value of the "From" input field to the selected building's name
+        document.getElementById('from').value = buildingName;
+    }
+        // Add event listener to the search form
+        document.getElementById("searchForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submissions
+            // Get the values from the input fields
+            var fromValue = document.getElementById("from").value.toLowerCase(); // Convert to lowercase for case-insensitive comparison
+            var toValue = document.getElementById("to").value.toLowerCase();
+            // Perform processing based on inputs and display the result
+            var result = calculateResult(fromValue, toValue);
+            displayResult(result);
+        });
+    }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

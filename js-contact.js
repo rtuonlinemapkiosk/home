@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         heading.textContent = 'Contact Us';
 
         var paragraph1 = document.createElement('p');
-        paragraph1.textContent = 'To reach us, simply click the email to compose a message via email.';
+        paragraph1.textContent = 'To reach us, simply click the email for your queries and concerns.';
         paragraph1.style.fontFamily = 'Monaco';
         paragraph1.style.fontSize = '13px';
 
